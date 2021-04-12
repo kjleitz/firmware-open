@@ -21,6 +21,7 @@ if [[ "${ID}" =~ "debian" ]] || [[ "${ID_LIKE}" =~ "debian" ]]; then
     ccache \
     cmake \
     curl \
+    devmem2 \
     dosfstools \
     flashrom \
     flex \
@@ -29,6 +30,7 @@ if [[ "${ID}" =~ "debian" ]] || [[ "${ID_LIKE}" =~ "debian" ]]; then
     gnat \
     libncurses-dev \
     libudev-dev \
+    msr-tools \
     mtools \
     nasm \
     parted \
@@ -51,6 +53,7 @@ elif [[ "${ID}" =~ "fedora" ]] || [[ "${ID_LIKE}" =~ "fedora" ]]; then
     gcc-gnat \
     git-lfs \
     libuuid-devel \
+    msr-tools \
     mtools \
     nasm \
     ncurses-devel \
@@ -60,6 +63,33 @@ elif [[ "${ID}" =~ "fedora" ]] || [[ "${ID_LIKE}" =~ "fedora" ]]; then
     sdcc \
     systemd-devel \
     zlib-devel
+elif [[ "${ID}" =~ "arch" ]] || [[ "${ID_LIKE}" =~ "arch" ]]; then
+    sudo pacman -S \
+    bison \
+    cmake \
+    curl \
+    dosfstools \
+    flex \
+    mtools \
+    parted \
+    python \
+    gcc-ada \
+    avr-gcc \
+    ncurses \
+    libgudev \
+    python-distutils-extra \
+    avr-libc \
+    avrdude \
+    curl \
+    dosfstools \
+    flashrom \
+    git-lfs \
+    msr-tools \
+    mtools \
+    nasm \
+    parted \
+    patch \
+    sdcc
 else
   msg "Unknown system ID: ${ID}"
   msg "Please add support for your distribution to: $0"
@@ -89,11 +119,8 @@ if ! which rustup &> /dev/null; then
   source "${HOME}/.cargo/env"
 fi
 
-msg "Installing pinned Rust toolchain"
-rustup toolchain install "$(cat rust-toolchain)"
-
-msg "Installing source for pinned Rust toolchain"
-rustup component add --toolchain "$(cat rust-toolchain)" rust-src
+msg "Installing pinned Rust toolchain and components"
+rustup show
 
 msg "\x1B[32mSuccessfully installed dependencies"
 echo "Ready to run ./scripts/build.sh [model]" >&2

@@ -4,6 +4,28 @@ Changes are identified by the date of the released firmware including them. If
 you are running System76 Open Firmware, opening the boot menu will show this
 date followed by an underscore and a short git revision.
 
+## 2021-04-07
+
+- darp7, galp5, lemp10: Update microcode
+
+## 2021-04-02
+
+- Fix fan max keeping fan on when in S0iX
+- Report all keys as released when lid is closed
+
+## 2021-03-19
+
+- darp5, galp3-c, gaze15: Release of open firmware with System76 EC
+- gaze15: Add ELAN touchpad settings
+
+## 2021-03-16
+
+- oryp6, oryp7: Fix buzzing at lowest fan speed
+
+## 2021-03-11
+
+- lemp9: Fix backlight ACPI issues and TPM interrupt
+
 ## 2021-03-08
 
 - oryp6, oryp7: Improved fan curve
